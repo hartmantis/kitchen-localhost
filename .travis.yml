@@ -1,11 +1,9 @@
 language: ruby
 
+cache: bundler
+sudo: false
+
 rvm:
+- ruby-head
 - 2.0.0
 - 1.9.3
-- 1.9.2
-- ruby-head
-
-matrix:
-  allow_failures:
-  - rvm: ruby-head

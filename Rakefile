@@ -1,21 +1,20 @@
-require "bundler/gem_tasks"
+# Encoding: UTF-8
+
+require 'bundler/setup'
+require 'rubocop/rake_task'
 require 'cane/rake_task'
-require 'tailor/rake_task'
+require 'rspec/core/rake_task'
 
-desc "Run cane to check quality metrics"
-Cane::RakeTask.new do |cane|
-  cane.canefile = './.cane'
+Cane::RakeTask.new
+
+RuboCop::RakeTask.new
+
+desc 'Display LOC stats'
+task :loc do
+  puts "\n## LOC Stats"
+  sh 'countloc -r lib'
 end
 
-Tailor::RakeTask.new
+RSpec::Core::RakeTask.new(:spec)
 
-desc "Display LOC stats"
-task :stats do
-  puts "\n## Production Code Stats"
-  sh "countloc -r lib"
-end
-
-desc "Run all quality tasks"
-task :quality => [:cane, :tailor, :stats]
-
-task :default => [:quality]
+task default: [:cane, :rubocop, :loc, :spec]

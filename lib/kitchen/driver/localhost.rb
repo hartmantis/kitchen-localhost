@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# Encoding: UTF-8
 #
 # Author:: Jonathan Hartman (<j@p4nt5.com>)
 #
@@ -15,18 +15,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 require 'kitchen'
+require_relative 'localhost/version'
 
 module Kitchen
-
   module Driver
-
-    # Localhost driver for Kitchen.
+    # Localhost driver for Kitchen
     #
     # @author Jonathan Hartman <j@p4nt5.com>
-    class Localhost < Kitchen::Driver::SSHBase
-
+    class Localhost < Kitchen::Driver::Base
       def create(state)
       end
 

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# Encoding: UTF-8
 #
 # Author:: Jonathan Hartman (<j@p4nt5.com>)
 #
@@ -15,12 +15,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+
+require 'kitchen'
 
 module Kitchen
-
   module Driver
-
     # Version string for Localhost Kitchen driver
-    LOCALHOST_VERSION = "0.1.0.dev"
+    #
+    # @author Jonathan Hartman <j@p4nt5.com>
+    class Localhost < Kitchen::Driver::Base
+      VERSION = '0.0.1.dev'
+    end
   end
 end
