@@ -45,7 +45,7 @@ describe Kitchen::Transport::Localhost::Connection do
 
       before(:each) do
         allow_any_instance_of(described_class).to receive(:run_command)
-          .with(command).and_raise(Kitchen::ShellOut::ShellCommandFailed)
+          .with(command).and_raise(Kitchen::ShellOut::ShellCommandFailed, 'no')
       end
 
       it 're-raises the exception' do

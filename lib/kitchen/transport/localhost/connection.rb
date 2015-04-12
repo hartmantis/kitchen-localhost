@@ -42,7 +42,7 @@ module Kitchen
           logger.debug("[Localhost] #{self} (#{command})")
           begin
             run_command(command)
-          rescue Exception => err
+          rescue StandardError => err
             raise(Kitchen::Transport::LocalhostFailed, err.message)
           end
         end
