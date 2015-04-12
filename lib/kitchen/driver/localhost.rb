@@ -18,18 +18,38 @@
 #
 
 require 'kitchen'
-require_relative 'localhost/version'
+require 'fileutils'
+require 'socket'
+require_relative '../localhost/version'
 
 module Kitchen
   module Driver
-    # Localhost driver for Kitchen
+    # Localhost driver for Kitchen.
     #
     # @author Jonathan Hartman <j@p4nt5.com>
     class Localhost < Kitchen::Driver::Base
+      kitchen_driver_api_version 2
+
+      plugin_version Kitchen::Localhost::VERSION
+
+      #
+      # Create the temp dirs on the local filesystem for Kitchen.
+      #
+      # (see Base#create)
       def create(state)
+        state[:hostname] = Socket.gethostname
+        logger.info("[Localhost] Instance #{instance} ready.")
       end
 
-      def destroy(state)
+      #
+      # Clean up the temp dirs left behind
+      #
+      # (see Base#destroy)
+      #
+      def destroy(_)
+        path = instance.provisioner[:root_path]
+        FileUtils.rm_rf(path)
+        logger.info("[Localhost] Deleted tmp dir '#{path}'.")
       end
     end
   end

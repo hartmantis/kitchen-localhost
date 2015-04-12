@@ -2,11 +2,11 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'kitchen/driver/localhost/version'
+require 'kitchen/localhost/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'kitchen-localhost'
-  spec.version       = Kitchen::Driver::Localhost::VERSION
+  spec.version       = Kitchen::Localhost::VERSION
   spec.authors       = ['Jonathan Hartman']
   spec.email         = %w(j@p4nt5.com)
   spec.description   = 'A Test Kitchen Driver for localhost'

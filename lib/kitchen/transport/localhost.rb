@@ -18,14 +18,29 @@
 #
 
 require 'kitchen'
+require_relative '../localhost/version'
+require_relative 'localhost/connection'
 
 module Kitchen
-  module Driver
-    # Version string for Localhost Kitchen driver
+  module Transport
+    # Localhost transport for Kitchen.
     #
     # @author Jonathan Hartman <j@p4nt5.com>
-    class Localhost < Kitchen::Driver::Base
-      VERSION = '0.0.1.dev'
+    class Localhost < Kitchen::Transport::Base
+      kitchen_transport_api_version 1
+
+      plugin_version Kitchen::Localhost::VERSION
+
+      # (see Base#connection)
+      #
+      def connection(state, &block)
+        Kitchen::Transport::Localhost::Connection.new(state, &block)
+      end
     end
+
+    # An exception class for transport errors from the Localhost plugin.
+    #
+    # @author Jonathan Hartman <j@p4nt5.com>
+    class LocalhostFailed < TransportFailed; end
   end
 end
