@@ -41,12 +41,33 @@ Add this line to your project's Gemfile:
 Configuration
 -------------
 
+Just override one of the platforms in your Kitchen config to use this driver.
+That's it!
+
+    ---
+    driver:
+      name: vagrant
+
+    provisioner:
+      name: chef_zero
+
+    platforms:
+      - name: ubuntu-14.04
+      - name: centos-7.0
+      - name: macosx-10.10
+        driver:
+          name: localhost
+
+    suites:
+      - name: default
+        run_list:
+          - recipe[something]
+
 Contributing
 ------------
 
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every separate change you make. For
-example:
+Pull requests are very welcome! Make sure your patches are well tested. Ideally
+create a topic branch for every separate change you make. For example:
 
 1. Fork the repo
 2. `bundle install`
