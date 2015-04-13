@@ -61,7 +61,7 @@ describe Kitchen::Transport::Localhost::Connection do
     let(:remote) { '/tmp/kitchen' }
 
     before(:each) do
-      %i(mkdir_p cp_r).each do |m|
+      [:mkdir_p, :cp_r].each do |m|
         allow(FileUtils).to receive(m).and_return(true)
       end
     end
