@@ -17,8 +17,9 @@
 # limitations under the License.
 #
 
+require 'bundler'
 require 'fileutils'
-require 'kitchen/shell_out'
+require 'kitchen'
 require_relative '../localhost'
 
 module Kitchen
@@ -41,7 +42,7 @@ module Kitchen
           return if command.nil?
           logger.debug("[Localhost] #{self} (#{command})")
           begin
-            run_command(command)
+            Bundler.with_clean_env { run_command(command) }
           rescue StandardError => err
             raise(Kitchen::Transport::LocalhostFailed, err.message)
           end

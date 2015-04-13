@@ -33,7 +33,8 @@ describe Kitchen::Transport::Localhost::Connection do
       let(:command) { 'pwd' }
       let(:res) { 'myself' }
 
-      it 'executes the command' do
+      it 'executes the command in a clean Bundler environment' do
+        expect(Bundler).to receive(:with_clean_env).and_yield
         expect_any_instance_of(described_class).to receive(:run_command)
           .with(command).and_return(res)
         expect(connection.execute(command)).to eq(res)
