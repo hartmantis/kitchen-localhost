@@ -17,9 +17,10 @@
 # limitations under the License.
 #
 
-require 'kitchen'
 require 'fileutils'
 require 'socket'
+require 'kitchen'
+require 'kitchen/driver/base'
 require_relative '../localhost/version'
 require_relative '../instance'
 

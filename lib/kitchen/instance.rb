@@ -18,6 +18,7 @@
 #
 
 require 'kitchen'
+require 'kitchen/instance'
 require_relative 'driver/localhost'
 require_relative 'transport/localhost'
 

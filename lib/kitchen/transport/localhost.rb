@@ -18,6 +18,7 @@
 #
 
 require 'kitchen'
+require 'kitchen/transport/base'
 require_relative '../localhost/version'
 require_relative 'localhost/connection'
 

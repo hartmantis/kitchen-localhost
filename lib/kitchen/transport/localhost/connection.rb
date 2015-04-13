@@ -20,6 +20,8 @@
 require 'bundler'
 require 'fileutils'
 require 'kitchen'
+require 'kitchen/shell_out'
+require 'kitchen/transport/base'
 require_relative '../localhost'
 
 module Kitchen
