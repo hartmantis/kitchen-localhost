@@ -1,8 +1,14 @@
-[![Gem Version](https://badge.fury.io/rb/kitchen-localhost.png)](http://badge.fury.io/rb/kitchen-localhost)
-[![Build Status](https://travis-ci.org/RoboticCheese/kitchen-localhost.png?branch=master)](https://travis-ci.org/RoboticCheese/kitchen-localhost)
-[![Code Climate](https://codeclimate.com/github/RoboticCheese/kitchen-localhost.png)](https://codeclimate.com/github/RobotiCcheese/kitchen-localhost)
-[![Coverage Status](https://coveralls.io/repos/RoboticCheese/kitchen-localhost/badge.png)](https://coveralls.io/r/RoboticCheese/kitchen-localhost)
-[![Dependency Status](https://gemnasium.com/RoboticCheese/kitchen-localhost.png)](https://gemnasium.com/RoboticCheese/kitchen-localhost)
+[![Gem Version](https://img.shields.io/gem/v/kitchen-localhost.svg)][gem]
+[![Build Status](https://img.shields.io/travis/RoboticCheese/kitchen-localhost.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/github/RoboticCheese/kitchen-localhost.svg)][codeclimate]
+[![Coverage Status](https://img.shields.io/coveralls/RoboticCheese/kitchen-localhost.svg)][coveralls]
+[![Dependency Status](https://img.shields.io/gemnasium/RoboticCheese/kitchen-localhost.svg)][gemnasium]
+
+[gem]: https://rubygems.org/gems/kitchen-localhost
+[travis]: https://travis-ci.org/RoboticCheese/kitchen-localhost
+[codeclimate]: https://codeclimate.com/github/RoboticCheese/kitchen-localhost
+[coveralls]: https://coveralls.io/r/RoboticCheese/kitchen-localhost
+[gemnasium]: https://gemnasium.com/RoboticCheese/kitchen-localhost
 
 Kitchen::Localhost
 ==================
