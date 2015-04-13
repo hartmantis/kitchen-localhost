@@ -17,11 +17,27 @@
 # limitations under the License.
 #
 
+require 'kitchen'
+require_relative 'driver/localhost'
+require_relative 'transport/localhost'
+
 module Kitchen
-  # Version string for Localhost Kitchen plugins.
+  # Monkey patch the Kitchen::Instance class with the default configs for the
+  # Localhost driver/transport.
   #
   # @author Jonathan Hartman <j@p4nt5.com>
-  module Localhost
-    VERSION = '0.0.1.dev'
+  class Instance
+    alias_method :old_setup_transport, :setup_transport
+
+    # If using the Localhost driver, force usage of the Localhost transport.
+    #
+    # (see Instance#setup_transport)
+    #
+    def setup_transport
+      if @driver.is_a?(Kitchen::Driver::Localhost)
+        @transport = Kitchen::Transport::Localhost.new
+      end
+      old_setup_transport
+    end
   end
 end

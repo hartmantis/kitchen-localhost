@@ -21,6 +21,7 @@ require 'kitchen'
 require 'fileutils'
 require 'socket'
 require_relative '../localhost/version'
+require_relative '../instance'
 
 module Kitchen
   module Driver
