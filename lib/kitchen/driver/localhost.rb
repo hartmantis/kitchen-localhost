@@ -48,9 +48,13 @@ module Kitchen
       # (see Base#destroy)
       #
       def destroy(_)
-        path = instance.provisioner[:root_path]
-        FileUtils.rm_rf(path)
-        logger.info("[Localhost] Deleted tmp dir '#{path}'.")
+        paths = [
+          instance.provisioner[:root_path], instance.verifier[:root_path]
+        ]
+        paths.each do |p|
+          FileUtils.rm_rf(p)
+          logger.info("[Localhost] Deleted temp dir '#{p}'.")
+        end
       end
     end
   end

@@ -39,8 +39,12 @@ describe Kitchen::Driver::Localhost do
 
   describe '#destroy' do
     let(:state) { {} }
-    let(:root_path) { '/tmp/kitchen' }
-    let(:instance) { double(provisioner: { root_path: root_path }) }
+    let(:provisioner_path) { '/tmp/1' }
+    let(:verifier_path) { '/tmp/2' }
+    let(:instance) do
+      double(provisioner: { root_path: provisioner_path },
+             verifier: { root_path: verifier_path })
+    end
 
     before(:each) do
       allow_any_instance_of(described_class).to receive(:instance)
@@ -48,8 +52,13 @@ describe Kitchen::Driver::Localhost do
       allow(FileUtils).to receive(:rm_rf).and_return(true)
     end
 
-    it 'deletes the Kitchen tmp dir' do
-      expect(FileUtils).to receive(:rm_rf).with(root_path)
+    it 'deletes the provisioner temp dir' do
+      expect(FileUtils).to receive(:rm_rf).with(provisioner_path)
+      driver.destroy(state)
+    end
+
+    it 'deletes the verifier temp dir' do
+      expect(FileUtils).to receive(:rm_rf).with(verifier_path)
       driver.destroy(state)
     end
   end
