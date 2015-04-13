@@ -1,8 +1,8 @@
 [![Gem Version](https://badge.fury.io/rb/kitchen-localhost.png)](http://badge.fury.io/rb/kitchen-localhost)
-[![Build Status](https://travis-ci.org/test-kitchen/kitchen-localhost.png?branch=master)](https://travis-ci.org/test-kitchen/kitchen-localhost)
-[![Code Climate](https://codeclimate.com/github/test-kitchen/kitchen-localhost.png)](https://codeclimate.com/github/test-kitchen/kitchen-localhost)
-[![Coverage Status](https://coveralls.io/repos/test-kitchen/kitchen-localhost/badge.png)](https://coveralls.io/r/test-kitchen/kitchen-localhost)
-[![Dependency Status](https://gemnasium.com/test-kitchen/kitchen-localhost.png)](https://gemnasium.com/test-kitchen/kitchen-localhost)
+[![Build Status](https://travis-ci.org/roboticcheese/kitchen-localhost.png?branch=master)](https://travis-ci.org/roboticcheese/kitchen-localhost)
+[![Code Climate](https://codeclimate.com/github/roboticcheese/kitchen-localhost.png)](https://codeclimate.com/github/roboticcheese/kitchen-localhost)
+[![Coverage Status](https://coveralls.io/repos/roboticcheese/kitchen-localhost/badge.png)](https://coveralls.io/r/roboticcheese/kitchen-localhost)
+[![Dependency Status](https://gemnasium.com/roboticcheese/kitchen-localhost.png)](https://gemnasium.com/roboticcheese/kitchen-localhost)
 
 Kitchen::Localhost
 ==================
