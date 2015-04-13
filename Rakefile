@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'rubocop/rake_task'
 require 'cane/rake_task'
 require 'rspec/core/rake_task'
+require 'kitchen/rake_tasks'
 
 Cane::RakeTask.new
 
@@ -16,5 +17,7 @@ task :loc do
 end
 
 RSpec::Core::RakeTask.new(:spec)
+
+Kitchen::RakeTasks.new
 
 task default: [:cane, :rubocop, :loc, :spec]

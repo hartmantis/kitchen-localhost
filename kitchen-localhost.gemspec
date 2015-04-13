@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov', '~> 0.9'
   spec.add_development_dependency 'simplecov-console', '~> 0.2'
   spec.add_development_dependency 'coveralls', '~> 0.8'
+  spec.add_development_dependency 'berkshelf', '~> 3.2'
 end

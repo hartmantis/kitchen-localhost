@@ -1,0 +1,17 @@
+---
+driver:
+  name: localhost
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: localhost
+
+suites:
+  - name: tempfile
+    run_list:
+      - recipe[kitchen-localhost-test]
+    attributes:
+      kitchen_localhost_test:
+        test_file: testing_kitchen_localhost

@@ -19,3 +19,4 @@ tmp
 *.sw?
 *~
 .env.sh
+Berksfile.lock

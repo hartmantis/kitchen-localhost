@@ -3,6 +3,9 @@ language: ruby
 cache: bundler
 sudo: false
 
+script:
+  - bundle exec rake && bundle exec rake kitchen:all
+
 rvm:
 - ruby-head
 - 2.0.0
