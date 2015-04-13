@@ -1,7 +1,7 @@
 language: ruby
 
 cache: bundler
-sudo: false
+sudo: true
 
 script:
   - bundle exec rake && bundle exec rake kitchen:all
