@@ -22,7 +22,7 @@ require 'socket'
 require 'kitchen'
 require 'kitchen/driver/base'
 require_relative '../localhost/version'
-require_relative '../instance'
+require_relative '../instance_patch'
 
 module Kitchen
   module Driver

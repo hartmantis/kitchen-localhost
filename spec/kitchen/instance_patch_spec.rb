@@ -5,7 +5,7 @@ require 'kitchen/provisioner/dummy'
 require 'kitchen/transport/ssh'
 require 'kitchen/verifier/dummy'
 require_relative '../spec_helper'
-require_relative '../../lib/kitchen/instance'
+require_relative '../../lib/kitchen/instance_patch'
 
 describe Kitchen::Instance do
   let(:driver) { nil }
