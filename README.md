@@ -93,7 +93,7 @@ Apache 2.0 (see [LICENSE][license])
 
 [author]:           https://github.com/roboticcheese
 [issues]:           https://github.com/roboticcheese/kitchen-localhost/issues
-[license]:          https://github.com/roboticcheese/kitchen-localhost/blob/master/LICENSE
+[license]:          https://github.com/roboticcheese/kitchen-localhost/blob/master/LICENSE.txt
 [repo]:             https://github.com/roboticcheese/kitchen-localhost
 [driver_usage]:     http://docs.kitchen-ci.org/drivers/usage
 [chef_omnibus_dl]:  http://www.getchef.com/chef/install/
