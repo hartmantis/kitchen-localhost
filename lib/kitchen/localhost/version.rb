@@ -22,6 +22,6 @@ module Kitchen
   #
   # @author Jonathan Hartman <j@p4nt5.com>
   module Localhost
-    VERSION = '0.0.1.dev'
+    VERSION = '0.1.0'
   end
 end
