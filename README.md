@@ -1,8 +1,8 @@
 [![Gem Version](https://badge.fury.io/rb/kitchen-localhost.png)](http://badge.fury.io/rb/kitchen-localhost)
-[![Build Status](https://travis-ci.org/roboticcheese/kitchen-localhost.png?branch=master)](https://travis-ci.org/roboticcheese/kitchen-localhost)
-[![Code Climate](https://codeclimate.com/github/roboticcheese/kitchen-localhost.png)](https://codeclimate.com/github/roboticcheese/kitchen-localhost)
-[![Coverage Status](https://coveralls.io/repos/roboticcheese/kitchen-localhost/badge.png)](https://coveralls.io/r/roboticcheese/kitchen-localhost)
-[![Dependency Status](https://gemnasium.com/roboticcheese/kitchen-localhost.png)](https://gemnasium.com/roboticcheese/kitchen-localhost)
+[![Build Status](https://travis-ci.org/RoboticCheese/kitchen-localhost.png?branch=master)](https://travis-ci.org/RoboticCheese/kitchen-localhost)
+[![Code Climate](https://codeclimate.com/github/RoboticCheese/kitchen-localhost.png)](https://codeclimate.com/github/RobotiCcheese/kitchen-localhost)
+[![Coverage Status](https://coveralls.io/repos/RoboticCheese/kitchen-localhost/badge.png)](https://coveralls.io/r/RoboticCheese/kitchen-localhost)
+[![Dependency Status](https://gemnasium.com/RoboticCheese/kitchen-localhost.png)](https://gemnasium.com/RoboticCheese/kitchen-localhost)
 
 Kitchen::Localhost
 ==================
@@ -91,9 +91,9 @@ License
 
 Apache 2.0 (see [LICENSE][license])
 
-[author]:           https://github.com/roboticcheese
-[issues]:           https://github.com/roboticcheese/kitchen-localhost/issues
-[license]:          https://github.com/roboticcheese/kitchen-localhost/blob/master/LICENSE.txt
-[repo]:             https://github.com/roboticcheese/kitchen-localhost
+[author]:           https://github.com/RoboticCheese
+[issues]:           https://github.com/RoboticCheese/kitchen-localhost/issues
+[license]:          https://github.com/RoboticCheese/kitchen-localhost/blob/master/LICENSE.txt
+[repo]:             https://github.com/RoboticCheese/kitchen-localhost
 [driver_usage]:     http://docs.kitchen-ci.org/drivers/usage
 [chef_omnibus_dl]:  http://www.getchef.com/chef/install/
