@@ -1,6 +1,9 @@
 Kitchen-Localhost CHANGELOG
 ===========================
 
+v?.?.? (????-??-??)
+-------------------
+
 v0.1.1 (2015-04-29)
 -------------------
 * Bump Kitchen dependency to the final 1.4 release
