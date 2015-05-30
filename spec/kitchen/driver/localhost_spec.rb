@@ -22,12 +22,77 @@ describe Kitchen::Driver::Localhost do
     expect(res).to match(expected)
   end
 
+  describe '.lock' do
+    it 'returns a Mutex' do
+      expect(described_class.lock).to be_an_instance_of(Mutex)
+    end
+  end
+
+  describe '.lock!' do
+    let(:locked?) { nil }
+    let(:lock) { double(locked?: locked?, lock: true) }
+
+    before(:each) do
+      allow(described_class).to receive(:lock).and_return(lock)
+    end
+
+    context 'already locked' do
+      let(:locked?) { true }
+
+      it 'does nothing' do
+        expect(lock).not_to receive(:lock)
+        described_class.lock!
+      end
+    end
+
+    context 'not locked' do
+      let(:locked!) { false }
+
+      it 'locks' do
+        expect(lock).to receive(:lock)
+        described_class.lock!
+      end
+    end
+  end
+
+  describe '.unlock!' do
+    let(:locked?) { nil }
+    let(:lock) { double(locked?: locked?, unlock: true) }
+
+    before(:each) do
+      allow(described_class).to receive(:lock).and_return(lock)
+    end
+
+    context 'already locked' do
+      let(:locked?) { true }
+
+      it 'unlocks' do
+        expect(lock).to receive(:unlock)
+        described_class.unlock!
+      end
+    end
+
+    context 'not locked' do
+      let(:locked!) { false }
+
+      it 'does nothing' do
+        expect(lock).not_to receive(:unlock)
+        described_class.unlock!
+      end
+    end
+  end
+
   describe '#create' do
     let(:state) { {} }
     let(:hostname) { 'example.com' }
 
     before(:each) do
       allow(Socket).to receive(:gethostname).and_return(hostname)
+    end
+
+    it 'locks the class-level Mutex' do
+      expect(described_class).to receive(:lock!)
+      driver.create(state)
     end
 
     it 'adds the system hostname to the state' do
@@ -50,6 +115,12 @@ describe Kitchen::Driver::Localhost do
       allow_any_instance_of(described_class).to receive(:instance)
         .and_return(instance)
       allow(FileUtils).to receive(:rm_rf).and_return(true)
+    end
+
+    it 'locks and unlocks the class-level Mutex' do
+      expect(described_class).to receive(:lock!)
+      expect(described_class).to receive(:unlock!)
+      driver.destroy(state)
     end
 
     it 'deletes the provisioner temp dir' do

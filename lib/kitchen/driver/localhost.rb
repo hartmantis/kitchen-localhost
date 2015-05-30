@@ -31,14 +31,38 @@ module Kitchen
     # @author Jonathan Hartman <j@p4nt5.com>
     class Localhost < Kitchen::Driver::Base
       kitchen_driver_api_version 2
-
       plugin_version Kitchen::Localhost::VERSION
+
+      #
+      # Define a Mutex at the class level so we can prevent instances using
+      # this driver from colliding.
+      #
+      # @return [Mutex]
+      #
+      def self.lock
+        @lock ||= Mutex.new
+      end
+
+      #
+      # Lock the class-level Mutex, whatever state it's in currently.
+      #
+      def self.lock!
+        lock.lock unless lock.locked?
+      end
+
+      #
+      # Unlock the class-level Mutex, whatever state it's in currently.
+      #
+      def self.unlock!
+        lock.unlock if lock.locked?
+      end
 
       #
       # Create the temp dirs on the local filesystem for Kitchen.
       #
       # (see Base#create)
       def create(state)
+        self.class.lock!
         state[:hostname] = Socket.gethostname
         logger.info("[Localhost] Instance #{instance} ready.")
       end
@@ -49,6 +73,7 @@ module Kitchen
       # (see Base#destroy)
       #
       def destroy(_)
+        self.class.lock!
         paths = [
           instance.provisioner[:root_path], instance.verifier[:root_path]
         ]
@@ -56,6 +81,7 @@ module Kitchen
           FileUtils.rm_rf(p)
           logger.info("[Localhost] Deleted temp dir '#{p}'.")
         end
+        self.class.unlock!
       end
     end
   end
