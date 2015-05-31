@@ -54,7 +54,11 @@ module Kitchen
       # Unlock the class-level Mutex, whatever state it's in currently.
       #
       def self.unlock!
-        lock.unlock if lock.locked? && lock.owned?
+        # Mutex#unlock raises an exception if lock is owned by another thread
+        # and Mutex#owned? isn't available in Ruby 1.9.
+        lock.unlock if lock.locked?
+      rescue ThreadError
+        nil
       end
 
       #

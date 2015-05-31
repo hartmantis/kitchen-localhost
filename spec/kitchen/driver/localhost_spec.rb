@@ -44,9 +44,14 @@ describe Kitchen::Driver::Localhost do
   describe '.unlock!' do
     let(:locked?) { nil }
     let(:owned?) { nil }
-    let(:lock) { double(locked?: locked?, owned?: owned?, unlock: true) }
+    let(:lock) { double(locked?: locked?) }
 
     before(:each) do
+      if owned?
+        allow(lock).to receive(:unlock)
+      else
+        allow(lock).to receive(:unlock).and_raise(ThreadError)
+      end
       allow(described_class).to receive(:lock).and_return(lock)
     end
 
@@ -54,7 +59,7 @@ describe Kitchen::Driver::Localhost do
       let(:locked?) { true }
       let(:owned?) { true }
 
-      it 'unlocks' do
+      it 'tries to unlock without error' do
         expect(lock).to receive(:unlock)
         described_class.unlock!
       end
@@ -64,8 +69,8 @@ describe Kitchen::Driver::Localhost do
       let(:locked?) { true }
       let(:owned?) { false }
 
-      it 'does nothing' do
-        expect(lock).not_to receive(:unlock)
+      it 'tries to unlock without error' do
+        expect(lock).to receive(:unlock)
         described_class.unlock!
       end
     end
