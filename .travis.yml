@@ -4,7 +4,7 @@ cache: bundler
 sudo: true
 
 script:
-  - bundle exec rake && bundle exec rake kitchen:all
+  - bundle exec rake && bundle exec kitchen test -c 2
 
 rvm:
 - ruby-head
