@@ -43,17 +43,29 @@ describe Kitchen::Driver::Localhost do
 
   describe '.unlock!' do
     let(:locked?) { nil }
-    let(:lock) { double(locked?: locked?, unlock: true) }
+    let(:owned?) { nil }
+    let(:lock) { double(locked?: locked?, owned?: owned?, unlock: true) }
 
     before(:each) do
       allow(described_class).to receive(:lock).and_return(lock)
     end
 
-    context 'already locked' do
+    context 'already locked and owned' do
       let(:locked?) { true }
+      let(:owned?) { true }
 
       it 'unlocks' do
         expect(lock).to receive(:unlock)
+        described_class.unlock!
+      end
+    end
+
+    context 'locked and not owned' do
+      let(:locked?) { true }
+      let(:owned?) { false }
+
+      it 'does nothing' do
+        expect(lock).not_to receive(:unlock)
         described_class.unlock!
       end
     end

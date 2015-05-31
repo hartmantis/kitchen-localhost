@@ -54,7 +54,7 @@ module Kitchen
       # Unlock the class-level Mutex, whatever state it's in currently.
       #
       def self.unlock!
-        lock.unlock if lock.locked?
+        lock.unlock if lock.locked? && lock.owned?
       end
 
       #
