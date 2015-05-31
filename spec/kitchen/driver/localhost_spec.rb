@@ -29,29 +29,15 @@ describe Kitchen::Driver::Localhost do
   end
 
   describe '.lock!' do
-    let(:locked?) { nil }
-    let(:lock) { double(locked?: locked?, lock: true) }
+    let(:lock) { double(lock: true) }
 
     before(:each) do
       allow(described_class).to receive(:lock).and_return(lock)
     end
 
-    context 'already locked' do
-      let(:locked?) { true }
-
-      it 'does nothing' do
-        expect(lock).not_to receive(:lock)
-        described_class.lock!
-      end
-    end
-
-    context 'not locked' do
-      let(:locked!) { false }
-
-      it 'locks' do
-        expect(lock).to receive(:lock)
-        described_class.lock!
-      end
+    it 'requests a lock from the class-level Mutex' do
+      expect(lock).to receive(:lock)
+      described_class.lock!
     end
   end
 
@@ -117,12 +103,6 @@ describe Kitchen::Driver::Localhost do
       allow(FileUtils).to receive(:rm_rf).and_return(true)
     end
 
-    it 'locks and unlocks the class-level Mutex' do
-      expect(described_class).to receive(:lock!)
-      expect(described_class).to receive(:unlock!)
-      driver.destroy(state)
-    end
-
     it 'deletes the provisioner temp dir' do
       expect(FileUtils).to receive(:rm_rf).with(provisioner_path)
       driver.destroy(state)
@@ -130,6 +110,11 @@ describe Kitchen::Driver::Localhost do
 
     it 'deletes the verifier temp dir' do
       expect(FileUtils).to receive(:rm_rf).with(verifier_path)
+      driver.destroy(state)
+    end
+
+    it 'unlocks the class-level Mutex' do
+      expect(described_class).to receive(:unlock!)
       driver.destroy(state)
     end
   end

@@ -47,7 +47,7 @@ module Kitchen
       # Lock the class-level Mutex, whatever state it's in currently.
       #
       def self.lock!
-        lock.lock unless lock.locked?
+        lock.lock
       end
 
       #
@@ -73,7 +73,6 @@ module Kitchen
       # (see Base#destroy)
       #
       def destroy(_)
-        self.class.lock!
         paths = [
           instance.provisioner[:root_path], instance.verifier[:root_path]
         ]

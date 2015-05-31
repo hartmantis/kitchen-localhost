@@ -3,6 +3,8 @@ Kitchen-Localhost CHANGELOG
 
 v?.?.? (????-??-??)
 -------------------
+* Try to catch instances where Kitchen is running in concurrency mode and force
+  instances of this driver to run serially.
 
 v0.1.1 (2015-04-29)
 -------------------
