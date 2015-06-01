@@ -31,14 +31,42 @@ module Kitchen
     # @author Jonathan Hartman <j@p4nt5.com>
     class Localhost < Kitchen::Driver::Base
       kitchen_driver_api_version 2
-
       plugin_version Kitchen::Localhost::VERSION
+
+      #
+      # Define a Mutex at the class level so we can prevent instances using
+      # this driver from colliding.
+      #
+      # @return [Mutex]
+      #
+      def self.lock
+        @lock ||= Mutex.new
+      end
+
+      #
+      # Lock the class-level Mutex, whatever state it's in currently.
+      #
+      def self.lock!
+        lock.lock
+      end
+
+      #
+      # Unlock the class-level Mutex, whatever state it's in currently.
+      #
+      def self.unlock!
+        # Mutex#unlock raises an exception if lock is owned by another thread
+        # and Mutex#owned? isn't available in Ruby 1.9.
+        lock.unlock if lock.locked?
+      rescue ThreadError
+        nil
+      end
 
       #
       # Create the temp dirs on the local filesystem for Kitchen.
       #
       # (see Base#create)
       def create(state)
+        self.class.lock!
         state[:hostname] = Socket.gethostname
         logger.info("[Localhost] Instance #{instance} ready.")
       end
@@ -56,6 +84,7 @@ module Kitchen
           FileUtils.rm_rf(p)
           logger.info("[Localhost] Deleted temp dir '#{p}'.")
         end
+        self.class.unlock!
       end
     end
   end

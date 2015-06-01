@@ -29,6 +29,10 @@ understanding that this driver will be running against _your local machine_. If
 you write a cookbook that formats a hard drive and run it with this driver, bad
 things will happen.
 
+Also note that this driver's very nature makes it likely there will be problems
+if you try to do a Test Kitchen run with multiple suites and/or with
+concurrency enabled.
+
 Installation and Setup
 ----------------------
 

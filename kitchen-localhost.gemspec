@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jonathan Hartman']
   spec.email         = %w(j@p4nt5.com)
   spec.description   = 'A Test Kitchen Driver for localhost'
-  spec.summary       = 'Use Test Kitchen to run Chef on your local machine!'
+  spec.summary       = 'Use Test Kitchen on your local machine!'
   spec.homepage      = 'https://github.com/test-kitchen/kitchen-localhost'
   spec.license       = 'Apache 2.0'
 

@@ -9,9 +9,9 @@ platforms:
   - name: localhost
 
 suites:
-  - name: tempfile
+  - name: create_file
     run_list:
-      - recipe[kitchen-localhost-test]
-    attributes:
-      kitchen_localhost_test:
-        test_file: testing_kitchen_localhost
+      - recipe[kitchen-localhost-test::create_file]
+  - name: delete_file
+    run_list:
+      - recipe[kitchen-localhost-test::delete_file]
