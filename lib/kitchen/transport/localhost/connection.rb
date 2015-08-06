@@ -18,10 +18,9 @@
 #
 
 require 'bundler'
-require 'fileutils'
 require 'kitchen'
-require 'kitchen/shell_out'
 require 'kitchen/transport/base'
+require_relative '../../localhost/shell_out'
 require_relative '../localhost'
 
 module Kitchen
@@ -31,10 +30,12 @@ module Kitchen
       #
       # @author Jonathan Hartman <j@p4nt5.com>
       class Connection < Kitchen::Transport::Base::Connection
-        include Kitchen::ShellOut
+        include Kitchen::Localhost::ShellOut
 
         #
-        # Execute a given command by shelling out and just running it.
+        # Execute a given command. Use the ShellOut helpers so the command is
+        # run through PowerShell on Windows systems and the regular command
+        # line everywhere else.
         #
         # (see Base::Connection#execute)
         #
@@ -51,14 +52,16 @@ module Kitchen
         end
 
         #
-        # Upload a set of local files to a 'remote' (aka Kitchen temp dir)
+        # Upload a set of local files to a 'remote' (aka Kitchen temp dir). Use
+        # the ShellOut helpers to run the paths through PowerShell and resolve
+        # any input PSH variables.
         #
         # (see Base::Connection#upload)
         #
         def upload(locals, remote)
-          FileUtils.mkdir_p(remote)
+          mkdir_p(remote)
           Array(locals).each do |local|
-            FileUtils.cp_r(local, remote)
+            cp_r(local, remote)
             logger.debug("[Localhost] Copied '#{local}' to '#{remote}'")
           end
           logger.debug("[Localhost] File copying to '#{remote}' complete")

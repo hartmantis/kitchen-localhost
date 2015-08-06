@@ -4,6 +4,8 @@
 # Recipe:: delete_file
 #
 
-file '/tmp/testing_kitchen_localhost' do
+require 'tmpdir'
+
+file File.join(Dir.tmpdir, 'testing_kitchen_localhost') do
   action :delete
 end

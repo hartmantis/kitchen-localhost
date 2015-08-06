@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe file('/tmp/testing_kitchen_localhost') do
+describe file("#{Dir.tmpdir}/testing_kitchen_localhost") do
   it 'exists' do
     expect(subject).to be_file
   end

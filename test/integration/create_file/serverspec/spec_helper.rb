@@ -1,5 +1,11 @@
 # Encoding: UTF-8
 
+require 'tmpdir'
 require 'serverspec'
 
-set :backend, :exec
+if RUBY_PLATFORM.match(/mswin|mingw32|windows/)
+  set :os, family: 'windows'
+  set :backend, :cmd
+else
+  set :backend, :exec
+end

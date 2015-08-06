@@ -17,15 +17,15 @@ describe Kitchen::Transport::Localhost::Connection do
 
     before(:each) do
       allow_any_instance_of(described_class).to receive(:run_command)
-        .and_return(true)
     end
 
     context 'a nil command' do
       let(:command) { nil }
 
       it 'returns immediately' do
-        expect_any_instance_of(described_class).not_to receive(:run_command)
-        expect(connection.execute(command)).to eq(nil)
+        c = connection
+        expect(c).not_to receive(:run_command)
+        expect(c.execute(command)).to eq(nil)
       end
     end
 
@@ -34,10 +34,10 @@ describe Kitchen::Transport::Localhost::Connection do
       let(:res) { 'myself' }
 
       it 'executes the command in a clean Bundler environment' do
+        c = connection
         expect(Bundler).to receive(:with_clean_env).and_yield
-        expect_any_instance_of(described_class).to receive(:run_command)
-          .with(command).and_return(res)
-        expect(connection.execute(command)).to eq(res)
+        expect(c).to receive(:run_command).with(command).and_return(res)
+        expect(c.execute(command)).to eq(res)
       end
     end
 
@@ -62,14 +62,15 @@ describe Kitchen::Transport::Localhost::Connection do
 
     before(:each) do
       [:mkdir_p, :cp_r].each do |m|
-        allow(FileUtils).to receive(m).and_return(true)
+        allow_any_instance_of(described_class).to receive(m).and_return(true)
       end
     end
 
     shared_examples_for 'any locals' do
       it 'creates the remote dir' do
-        expect(FileUtils).to receive(:mkdir_p).with(remote)
-        connection.upload(locals, remote)
+        c = connection
+        expect(c).to receive(:mkdir_p).with(remote)
+        c.upload(locals, remote)
       end
     end
 
@@ -79,8 +80,9 @@ describe Kitchen::Transport::Localhost::Connection do
       it_behaves_like 'any locals'
 
       it 'copies the local file' do
-        expect(FileUtils).to receive(:cp_r).with(locals, remote)
-        connection.upload(locals, remote)
+        c = connection
+        expect(c).to receive(:cp_r).with(locals, remote)
+        c.upload(locals, remote)
       end
     end
 
@@ -90,10 +92,9 @@ describe Kitchen::Transport::Localhost::Connection do
       it_behaves_like 'any locals'
 
       it 'copies the local files' do
-        locals.each do |l|
-          expect(FileUtils).to receive(:cp_r).with(l, remote)
-        end
-        connection.upload(locals, remote)
+        c = connection
+        locals.each { |l| expect(c).to receive(:cp_r).with(l, remote) }
+        c.upload(locals, remote)
       end
     end
   end

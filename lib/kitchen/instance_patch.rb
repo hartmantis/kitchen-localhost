@@ -30,6 +30,7 @@ module Kitchen
   class Instance
     alias_method :old_setup_transport, :setup_transport
 
+    #
     # If using the Localhost driver, force usage of the Localhost transport.
     #
     # (see Instance#setup_transport)

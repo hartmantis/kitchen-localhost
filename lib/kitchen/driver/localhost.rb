@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-require 'fileutils'
 require 'socket'
 require 'kitchen'
 require 'kitchen/driver/base'
+require_relative '../localhost/shell_out'
 require_relative '../localhost/version'
 require_relative '../instance_patch'
 
@@ -30,6 +30,8 @@ module Kitchen
     #
     # @author Jonathan Hartman <j@p4nt5.com>
     class Localhost < Kitchen::Driver::Base
+      include Kitchen::Localhost::ShellOut
+
       kitchen_driver_api_version 2
       plugin_version Kitchen::Localhost::VERSION
 
@@ -77,11 +79,10 @@ module Kitchen
       # (see Base#destroy)
       #
       def destroy(_)
-        paths = [
+        [
           instance.provisioner[:root_path], instance.verifier[:root_path]
-        ]
-        paths.each do |p|
-          FileUtils.rm_rf(p)
+        ].each do |p|
+          rm_rf(p)
           logger.info("[Localhost] Deleted temp dir '#{p}'.")
         end
         self.class.unlock!
