@@ -1,11 +1,13 @@
 [![Gem Version](https://img.shields.io/gem/v/kitchen-localhost.svg)][gem]
 [![Build Status](https://img.shields.io/travis/RoboticCheese/kitchen-localhost.svg)][travis]
+[![Windows Build Status](https://img.shields.io/appveyor/ci/RoboticCheese/kitchen-localhost.svg)][appveyor]
 [![Code Climate](https://img.shields.io/codeclimate/github/RoboticCheese/kitchen-localhost.svg)][codeclimate]
 [![Coverage Status](https://img.shields.io/coveralls/RoboticCheese/kitchen-localhost.svg)][coveralls]
 [![Dependency Status](https://img.shields.io/gemnasium/RoboticCheese/kitchen-localhost.svg)][gemnasium]
 
 [gem]: https://rubygems.org/gems/kitchen-localhost
 [travis]: https://travis-ci.org/RoboticCheese/kitchen-localhost
+[appveyor]: https://ci.appveyor.com/project/RoboticCheese/kitchen-localhost
 [codeclimate]: https://codeclimate.com/github/RoboticCheese/kitchen-localhost
 [coveralls]: https://coveralls.io/r/RoboticCheese/kitchen-localhost
 [gemnasium]: https://gemnasium.com/RoboticCheese/kitchen-localhost

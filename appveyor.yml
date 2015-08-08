@@ -1,0 +1,14 @@
+branches:
+  only:
+    - master
+
+install:
+  - cinst chefdk
+  - SET PATH=C:\opscode\chefdk\bin;%PATH%
+
+build_script:
+  - chef exec bundle install
+
+test_script:
+  - chef exec rake
+  - chef exec kitchen test
