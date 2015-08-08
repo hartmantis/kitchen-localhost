@@ -3,6 +3,10 @@ language: ruby
 cache: bundler
 sudo: true
 
+branches:
+  only:
+    - master
+
 script:
   - bundle exec rake && bundle exec kitchen test -c 2
 
