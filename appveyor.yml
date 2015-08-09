@@ -10,5 +10,5 @@ build_script:
   - chef exec bundle install
 
 test_script:
-  - chef exec rake
-  - chef exec kitchen test
+  - chef exec bundle exec rake
+  - chef exec bundle exec kitchen test
