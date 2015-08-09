@@ -20,6 +20,7 @@
 require 'kitchen'
 require 'kitchen/instance'
 require_relative 'driver/localhost'
+require_relative 'platform/localhost'
 require_relative 'transport/localhost'
 
 module Kitchen
@@ -36,10 +37,29 @@ module Kitchen
     # (see Instance#setup_transport)
     #
     def setup_transport
-      if @driver.is_a?(Kitchen::Driver::Localhost)
+      if driver.is_a?(Kitchen::Driver::Localhost)
         @transport = Kitchen::Transport::Localhost.new
       end
       old_setup_transport
+    end
+
+    #
+    # If using the Localhost driver, use the custom Platform class to figure
+    # out whether we need to use PowerShell or not.
+    #
+    # (see Instance#platform)
+    #
+    def platform
+      if driver.is_a?(Kitchen::Driver::Localhost)
+        unless @platform.is_a?(Kitchen::Localhost::Platform)
+          @platform = Kitchen::Localhost::Platform.new(
+            name: @platform.name,
+            os_type: @platform.os_type,
+            shell_type: @platform.shell_type
+          )
+        end
+      end
+      @platform
     end
   end
 end
