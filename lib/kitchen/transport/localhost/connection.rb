@@ -43,7 +43,7 @@ module Kitchen
         #
         def execute(command)
           return if command.nil?
-          logger.debug("[Localhost] #{self} (#{command})")
+          logger.debug("[Localhost] Executing command '#{command}'")
           begin
             Bundler.with_clean_env { run_command(command) }
           rescue StandardError => err
