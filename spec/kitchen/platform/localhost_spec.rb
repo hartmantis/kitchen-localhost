@@ -1,9 +1,9 @@
 # Encoding: UTF-8
 
-require_relative '../spec_helper'
-require_relative '../../lib/kitchen/platform_patch'
+require_relative '../../spec_helper'
+require_relative '../../../lib/kitchen/platform/localhost'
 
-describe Kitchen::Platform do
+describe Kitchen::Platform::Localhost do
   let(:options) { {} }
   let(:platform) { described_class.new(options) }
 

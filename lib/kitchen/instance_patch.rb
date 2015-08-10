@@ -37,7 +37,7 @@ module Kitchen
     # (see Instance#setup_transport)
     #
     def setup_transport
-      if driver.is_a?(Kitchen::Driver::Localhost)
+      if driver.class == Kitchen::Driver::Localhost
         @transport = Kitchen::Transport::Localhost.new
       end
       old_setup_transport
@@ -50,14 +50,13 @@ module Kitchen
     # (see Instance#platform)
     #
     def platform
-      if driver.is_a?(Kitchen::Driver::Localhost)
-        unless @platform.is_a?(Kitchen::Localhost::Platform)
-          @platform = Kitchen::Localhost::Platform.new(
-            name: @platform.name,
-            os_type: @platform.os_type,
-            shell_type: @platform.shell_type
-          )
-        end
+      if driver.class == Kitchen::Driver::Localhost && \
+         @platform.class != Kitchen::Platform::Localhost
+        @platform = Kitchen::Platform::Localhost.new(
+          name: @platform.name,
+          os_type: @platform.os_type,
+          shell_type: @platform.shell_type
+        )
       end
       @platform
     end

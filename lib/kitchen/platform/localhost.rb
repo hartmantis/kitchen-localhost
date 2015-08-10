@@ -19,15 +19,15 @@
 
 require 'kitchen'
 require 'kitchen/platform'
-require_relative 'shell_out'
+require_relative '../localhost/shell_out'
 
 module Kitchen
-  module Localhost
+  class Platform
     # A customized platform class that figures out on its own whether we're on
     # a Windows or *nix system, rather than relying on platform name.
     #
     # @author Jonathan Hartman <j@p4nt5.com>
-    class Platform < Kitchen::Platform
+    class Localhost < Platform
       include Kitchen::Localhost::ShellOut
 
       #

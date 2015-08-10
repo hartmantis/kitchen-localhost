@@ -21,7 +21,6 @@ require 'socket'
 require 'kitchen'
 require 'kitchen/driver/base'
 require_relative '../instance_patch'
-require_relative '../platform_patch'
 require_relative '../localhost/shell_out'
 require_relative '../localhost/version'
 

@@ -40,4 +40,24 @@ describe Kitchen::Instance do
       end
     end
   end
+
+  describe '#platform' do
+    context 'a non-Localhost driver' do
+      let(:driver) { Kitchen::Driver::Dummy.new }
+
+      it 'uses the Localhost Platform class' do
+        expected = Kitchen::Platform
+        expect(instance.platform).to be_an_instance_of(expected)
+      end
+    end
+
+    context 'the Localhost driver' do
+      let(:driver) { Kitchen::Driver::Localhost.new }
+
+      it 'keeps the regular Platform class' do
+        expected = Kitchen::Platform::Localhost
+        expect(instance.platform).to be_an_instance_of(expected)
+      end
+    end
+  end
 end
