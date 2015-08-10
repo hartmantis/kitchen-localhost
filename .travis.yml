@@ -7,8 +7,11 @@ branches:
   only:
     - master
 
+install:
+  - bundle update
+
 script:
-  - bundle exec rake && bundle exec kitchen test
+  - bundle exec rake && bundle exec kitchen test -c 2
 
 rvm:
 - ruby-head
