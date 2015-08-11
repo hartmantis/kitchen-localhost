@@ -117,17 +117,14 @@ describe Kitchen::Driver::Localhost do
     before(:each) do
       allow_any_instance_of(described_class).to receive(:instance)
         .and_return(instance)
-      allow(FileUtils).to receive(:rm_rf).and_return(true)
+      allow_any_instance_of(described_class).to receive(:rm_rf)
     end
 
-    it 'deletes the provisioner temp dir' do
-      expect(FileUtils).to receive(:rm_rf).with(provisioner_path)
-      driver.destroy(state)
-    end
-
-    it 'deletes the verifier temp dir' do
-      expect(FileUtils).to receive(:rm_rf).with(verifier_path)
-      driver.destroy(state)
+    it 'deletes the provisioner and verifier temp dirs' do
+      d = driver
+      expect(d).to receive(:rm_rf).with(provisioner_path)
+      expect(d).to receive(:rm_rf).with(verifier_path)
+      d.destroy(state)
     end
 
     it 'unlocks the class-level Mutex' do
