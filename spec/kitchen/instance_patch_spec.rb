@@ -21,6 +21,38 @@ describe Kitchen::Instance do
     )
   end
 
+  describe '.lock' do
+    it 'returns a Mutex' do
+      expect(described_class.lock).to be_an_instance_of(Mutex)
+    end
+  end
+
+  describe '#test' do
+    context 'a non-Localhost driver' do
+      let(:driver) { Kitchen::Driver::Dummy.new }
+
+      it 'does nothing with the class Mutex' do
+        i = instance
+        expect(described_class).not_to receive(:lock)
+        expect(i).to receive(:old_test).with(:passing)
+        i.test
+      end
+    end
+
+    context 'the Localhost driver' do
+      let(:driver) { Kitchen::Driver::Localhost.new }
+      let(:lock) { double }
+
+      it 'locks the class Mutex' do
+        i = instance
+        expect(described_class).to receive(:lock).and_return(lock)
+        expect(lock).to receive(:synchronize).and_yield
+        expect(i).to receive(:old_test).with(:passing)
+        i.test
+      end
+    end
+  end
+
   describe '#setup_transport' do
     context 'a non-Localhost driver' do
       let(:driver) { Kitchen::Driver::Dummy.new }

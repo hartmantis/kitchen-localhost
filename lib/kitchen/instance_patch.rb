@@ -29,6 +29,39 @@ module Kitchen
   #
   # @author Jonathan Hartman <j@p4nt5.com>
   class Instance
+    class << self
+      #
+      # Define a Mutex at the class level so we can prevent instances using
+      # the Localhost driver from colliding.
+      #
+      # @return [Mutex]
+      #
+      def lock
+        @lock ||= Mutex.new
+      end
+    end
+
+    alias_method :old_test, :test
+
+    #
+    # If using the Localhost driver, don't start the test phase until we can
+    # get a lock on the class-level Mutex.
+    #
+    # (see Instance#test)
+    #
+    def test(destroy_node = :passing)
+      if driver.class == Kitchen::Driver::Localhost
+        debug("[Localhost] Waiting for a lock before #{to_str} can proceed...")
+        self.class.lock.synchronize do
+          debug("[Localhost] Lock obtained for #{to_str}; proceeding...")
+          old_test(destroy_node)
+          debug("[Localhost] Test complete for #{to_str}; releasing lock...")
+        end
+      else
+        old_test(destroy_node)
+      end
+    end
+
     alias_method :old_setup_transport, :setup_transport
 
     #
