@@ -17,11 +17,13 @@ Kitchen::Localhost
 
 A Test Kitchen Driver for when you just want to run Chef on localhost.
 
-I swear, there's a reason this driver exists! Sometimes there are cases where
-you want to run Test Kitchen against your CI build server (e.g. using Travis
-CI's Objective-C build environments to do OS X cookbook testing). This driver
-allows you to do everything from Kitchen instead of separately shelling out
-for that one special platform.
+I swear, there's a reason this driver exists!
+
+TravisCI has a wonderful OS X build environment and AppVeyor a Windows one.
+This driver allows you to use either as a test environment--having the platform
+under test be the one running Test Kitchen, rather than a remote cloud
+server--all while keeping the same Kitchen settings, behavior, and log output
+you're used to.
 
 Requirements
 ------------
@@ -31,9 +33,10 @@ understanding that this driver will be running against _your local machine_. If
 you write a cookbook that formats a hard drive and run it with this driver, bad
 things will happen.
 
-Also note that this driver's very nature makes it likely there will be problems
-if you try to do a Test Kitchen run with multiple suites and/or with
-concurrency enabled.
+This driver attempts to minimize cases of multiple test suites clobbering each
+other by never running concurrently, even if the `-c` option is passed to Test
+Kitchen. But everything is still running on the same machine. Don't define
+multiple suites unless they're okay to run, serially, on a single server.
 
 Installation and Setup
 ----------------------
