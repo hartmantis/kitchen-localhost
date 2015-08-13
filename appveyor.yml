@@ -9,19 +9,20 @@ environment:
     - ruby_version: 193
 
 cache:
-  - C:\Ruby193\bin
-  - C:\Ruby193\lib\ruby\gems
+  - C:\Ruby%ruby_version%\bin
+  - C:\Ruby%ruby_version%\lib\ruby\gems
+  - '%TEMP%\verifier\gems'
 
 install:
   # Install chef-client as the quickest way to get a working tar for Gecode
   - cinst chef-client
   - SET PATH=C:\opscode\chef\bin;%PATH%
-  - SET PATH=C:\Ruby193\bin;%PATH%
-  - gem install bundler
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
 
 build_script:
   - bundle update
+  - bundle show test-kitchen
 
 test_script:
   - bundle exec rake
-  - bundle exec kitchen test -c 2 
+  - bundle exec kitchen test -c 2 -l debug

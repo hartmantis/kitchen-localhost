@@ -35,6 +35,8 @@ module Kitchen
       kitchen_driver_api_version 2
       plugin_version Kitchen::Localhost::VERSION
 
+      default_config :clean_up_on_destroy, true
+
       #
       # Create the temp dirs on the local filesystem for Kitchen.
       #
@@ -50,11 +52,15 @@ module Kitchen
       # (see Base#destroy)
       #
       def destroy(_)
-        [
-          instance.provisioner[:root_path], instance.verifier[:root_path]
-        ].each do |p|
-          rm_rf(p)
-          logger.info("[Localhost] Deleted temp dir '#{p}'.")
+        if config[:clean_up_on_destroy]
+          [
+            instance.provisioner[:root_path], instance.verifier[:root_path]
+          ].each do |p|
+            rm_rf(p)
+            logger.info("[Localhost] Deleted temp dir '#{p}'.")
+          end
+        else
+          logger.info('[Localhost] Leaving Kitchen temp dirs in place.')
         end
       end
     end
