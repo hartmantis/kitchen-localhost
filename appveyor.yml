@@ -4,7 +4,7 @@ branches:
 
 environment:
   matrix:
-    - ruby_version: 222
+    - ruby_version: 22
     - ruby_version: 200
     - ruby_version: 193
 
