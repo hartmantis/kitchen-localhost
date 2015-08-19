@@ -12,8 +12,8 @@ environment:
     - ruby_version: 193
 
 cache:
-  - C:\Ruby%ruby_version%\bin
-  - C:\Ruby%ruby_version%\lib\ruby\gems
+  - 'C:\Ruby%ruby_version%\bin'
+  - 'C:\Ruby%ruby_version%\lib\ruby\gems'
   - '%TEMP%\verifier\gems'
 
 install:
