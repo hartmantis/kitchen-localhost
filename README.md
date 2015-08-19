@@ -78,6 +78,17 @@ That's it!
         run_list:
           - recipe[something]
 
+Optionally, you can configure the driver to leave behind Test Kitchen's temp
+directories when it does a `kitchen destroy`:
+
+    ---
+    driver:
+      name: localhost
+      clean_up_on_destroy: false
+
+This can be useful if, for example, you have a CI system that's slow to install
+gems and you want to have it cache Busser + its plugins.
+
 Contributing
 ------------
 

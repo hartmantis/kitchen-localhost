@@ -1,6 +1,8 @@
 ---
 driver:
   name: localhost
+  # Leave Busser in place so the slower CI systems can cache it
+  clean_up_on_destroy: false
 
 provisioner:
   name: chef_zero
