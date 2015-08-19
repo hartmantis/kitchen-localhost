@@ -12,9 +12,9 @@ environment:
     - ruby_version: 193
 
 cache:
-  - 'C:\Ruby%ruby_version%\bin'
-  - 'C:\Ruby%ruby_version%\lib\ruby\gems'
-  - '%TEMP%\verifier\gems'
+  - C:\Ruby%ruby_version%\bin -> appveyor.yml
+  - C:\Ruby%ruby_version%\lib\ruby\gems -> appveyor.yml
+  - '%TEMP%\verifier\gems -> appveyor.yml'
 
 install:
   # Install chef-client as the quickest way to get a working tar for Gecode
