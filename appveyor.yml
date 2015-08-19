@@ -21,8 +21,7 @@ install:
 
 build_script:
   - bundle update
-  - bundle show test-kitchen
 
 test_script:
   - bundle exec rake
-  - bundle exec kitchen test -c 2 -l debug
+  - bundle exec kitchen test -c 2
