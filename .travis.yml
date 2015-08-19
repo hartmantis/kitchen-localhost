@@ -1,6 +1,9 @@
 language: ruby
 
-cache: bundler
+cache:
+  - bundler
+  - directories:
+    - /tmp/verifier/gems
 sudo: true
 
 branches:
