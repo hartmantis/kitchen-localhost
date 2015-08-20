@@ -2,29 +2,15 @@ branches:
   only:
     - master
 
-environment:
-  matrix:
-    # TODO: Test Kitchen won't work on Ruby 2.2 for Windows until net-ssh
-    # 2.10.x is released and Test Kitchen's version constraints is bumped to
-    # fix the references to the no-longer-existing 'dl/import'.
-    # - ruby_version: 22
-    - ruby_version: 200
-    - ruby_version: 193
-
 cache:
-  - C:\Ruby%ruby_version%\bin
-  - C:\Ruby%ruby_version%\lib\ruby\gems
   - '%TEMP%\verifier\gems'
 
 install:
-  # Install chef-client as the quickest way to get a working tar for Gecode
-  - cinst chef-client
-  - SET PATH=C:\opscode\chef\bin;%PATH%
-  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - cinst chefdk
+  - SET PATH=C:\opscode\chefdk\bin;%PATH%
 
 build_script:
-  - bundle update
+  - chef exec bundle install
 
 test_script:
-  - bundle exec rake
-  - bundle exec kitchen test -c 2
+  - chef exec bundle exec kitchen test -c 2
