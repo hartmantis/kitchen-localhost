@@ -1,22 +1,12 @@
-language: ruby
-
-cache:
-  - bundler
-  - directories:
-    - /tmp/verifier/gems
-sudo: true
+language: objective-c
 
 branches:
   only:
     - master
 
 install:
-  - bundle update
+  - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
+  - chef exec bundle install
 
 script:
-  - bundle exec rake && bundle exec kitchen test -c 2
-
-rvm:
-- ruby-head
-- 2.0.0
-- 1.9.3
+  - chef exec bundle exec kitchen test -c 2
