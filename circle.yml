@@ -1,0 +1,11 @@
+machine:
+  xcode:
+
+dependencies:
+  override:
+    - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
+    - chef exec bundle install
+
+test:
+  override:
+    - chef exec bundle exec kitchen verify
