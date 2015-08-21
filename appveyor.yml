@@ -10,7 +10,7 @@ install:
   - SET PATH=C:\opscode\chefdk\bin;%PATH%
 
 build_script:
-  - chef exec bundle install
+  - chef exec bundle update
 
 test_script:
   - chef exec bundle exec kitchen test -c 2

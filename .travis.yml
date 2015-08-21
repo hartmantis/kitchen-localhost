@@ -6,7 +6,7 @@ branches:
 
 install:
   - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
-  - chef exec bundle install
+  - chef exec bundle update
 
 script:
   - chef exec bundle exec kitchen test -c 2
