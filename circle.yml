@@ -7,12 +7,9 @@ dependencies:
     - rvm install 2.0.0-p645
     - rvm install 1.9.3-p545
   override:
-    #- rvm-exec 2.1.6 bundle install
-    #- rvm-exec 2.0.0-p645 bundle install
-    #- rvm-exec 1.9.3-p545 bundle install
-    - rvm-exec 2.1.6 gem install test-kitchen rspec rubocop
-    - rvm-exec 2.0.0-p645 gem install test-kitchen rspec rubocop
-    - rvm-exec 1.9.3-p545 gem install test-kitchen rspec rubocop
+    - rvm-exec 2.1.6 bundle install
+    - rvm-exec 2.0.0-p645 bundle install
+    - rvm-exec 1.9.3-p545 bundle install
   cache_directories:
     - /home/ubuntu/.rvm/gems
 
@@ -21,4 +18,4 @@ test:
     - rvm-exec 2.1.6 bundle exec rake
     - rvm-exec 2.0.0-p645 bundle exec rake
     - rvm-exec 1.9.3-p545 bundle exec rake
-    - bundle exec kitchen verify
+    - bundle exec kitchen test -c 2
