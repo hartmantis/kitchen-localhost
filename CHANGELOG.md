@@ -1,9 +1,11 @@
 Kitchen-Localhost CHANGELOG
 ===========================
 
-v?.?.? (????-??-??)
+v0.3.0 (2015-08-20)
 -------------------
 - Add Windows support
+- Add a `clean_up_on_destroy` option for saving Kitchen's temp dirs (e.g. to
+  save Busser plugins on a caching-capable CI system)
 
 v0.2.0 (2015-05-31)
 -------------------
