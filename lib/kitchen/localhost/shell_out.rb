@@ -30,7 +30,7 @@ module Kitchen
     module ShellOut
       include Kitchen::ShellOut
 
-      alias_method :run_command_sh, :run_command
+      alias run_command_sh run_command
 
       #
       # Run a given command through the regular shell on any *nix systems or
