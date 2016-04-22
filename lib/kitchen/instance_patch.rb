@@ -41,7 +41,7 @@ module Kitchen
       end
     end
 
-    alias_method :old_test, :test
+    alias old_test test
 
     #
     # If using the Localhost driver, don't start the test phase until we can
@@ -62,7 +62,7 @@ module Kitchen
       end
     end
 
-    alias_method :old_setup_transport, :setup_transport
+    alias old_setup_transport setup_transport
 
     #
     # If using the Localhost driver, force usage of the Localhost transport.
