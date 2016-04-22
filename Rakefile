@@ -11,4 +11,4 @@ RSpec::Core::RakeTask.new(:spec)
 
 Kitchen::RakeTasks.new
 
-task default: [:rubocop, :spec]
+task default: %i(rubocop spec)

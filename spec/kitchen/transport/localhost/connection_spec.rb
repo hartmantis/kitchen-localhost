@@ -61,7 +61,7 @@ describe Kitchen::Transport::Localhost::Connection do
     let(:remote) { '/tmp/kitchen' }
 
     before(:each) do
-      [:mkdir_p, :cp_r].each do |m|
+      %i(mkdir_p cp_r).each do |m|
         allow_any_instance_of(described_class).to receive(m).and_return(true)
       end
     end
