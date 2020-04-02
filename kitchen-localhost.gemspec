@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'A Test Kitchen Driver for localhost'
   spec.summary       = 'Use Test Kitchen on your local machine!'
   spec.homepage      = 'https://github.com/test-kitchen/kitchen-localhost'
-  spec.license       = 'Apache 2.0'
+  spec.license       = 'Apache-2.0'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_dependency 'test-kitchen', '~> 1.4'
+  spec.add_dependency 'test-kitchen', '>= 1.4', '< 3.0'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake', '~> 11.0'
